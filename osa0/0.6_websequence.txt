@@ -1,0 +1,10 @@
+title 0.6
+
+note over Selain: onsubmit-tapahtumakäsittelijä suoritetaan, \nmuistiinpano tulostuu ja ajax-pyyntö lähtee
+
+Selain->Palvelin:  POST new_note_spa
+Palvelin-->Selain: 201 
+
+
+
+

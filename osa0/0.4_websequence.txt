@@ -1,0 +1,20 @@
+title 0.4
+
+Selain->Palvelin: POST new note
+Palvelin-->Selain: 302 Redirect
+
+Selain->Palvelin: GET notes
+Palvelin-->Selain: 200 (HTML-koodi)
+
+Selain->Palvelin: GET CSS
+Palvelin-->Selain: 200 (main.css)
+
+Selain->Palvelin: GET JS
+Palvelin-->Selain: 200 (main.js)
+
+note over Selain: Suoritetaan js, joka puolestaan \nhakee palvelimelta jsonin.
+
+Selain->Palvelin: GET data.json
+Palvelin-->Selain: 200 (main.js)
+
+note over Selain: tapahtumakäsittelijä renderöi jsonissa \nolevat muistiinpanot
