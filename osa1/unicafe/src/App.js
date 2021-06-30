@@ -1,13 +1,36 @@
-import logo from './logo.svg';
+import React, { useState } from 'react'
 
-function App() {
+const App = () => {
+  // tallenna napit omaan tilaansa
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Give feedback</p>
-      </header>
+    <div>
+      <div>
+        <h2>Tehtävät 1.6. - 1.14.</h2>
+        <h1>Give feedback</h1>
+
+        <button onClick={() => setGood(good+1)}>
+          Good
+        </button>
+
+        <button onClick={() => setNeutral(neutral+1)}>
+          Neutral
+        </button>
+
+        <button onClick={() => setBad(bad+1)}>
+          Bad
+        </button>
+        
+        <h1>Statistics</h1>
+        <p>Good: {good}</p>
+        <p>Neutral: {neutral}</p>
+        <p>Bad: {bad}</p>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
