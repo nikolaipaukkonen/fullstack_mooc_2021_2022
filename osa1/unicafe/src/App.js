@@ -5,18 +5,64 @@ const History = (props) => {
     return (
       <div>No feedback given yet.</div>
     )
+  } else {
+    return (
+      <div><Statistics allClicks={props.allClicks}/></div>
+    ) 
   }
-  return (
+}
+
+const Statistics = (props) => {
+  const gnb = props.allClicks.join(' ') //join votes into a string
+  const g = gnb.split("g").length -1 // count votes from the string
+  const n = gnb.split("n").length -1
+  const b = gnb.split("b").length -1
+  const all = n+g+b
+
+  const average = (g+(b*(-1))) / (g+b+n)
+  const positive = (g / (g+b+n))*100
+
+  return (        
     <div>
-        <h1>Statistics</h1>
-        <p>Good: {props.good}</p>
-        <p>Neutral: {props.neutral}</p>
-        <p>Bad: {props.bad}</p>
-        <p>{props.allClicks.join(' ')}</p>
-        <p>Total: {props.good+props.bad+props.neutral}</p>
-        <p>Average: {(props.good+(props.bad*(-1))) / (props.good+props.bad+props.neutral)}</p>
-        <p>Positive: {(props.good / (props.good+props.bad+props.neutral))*100} %</p>
+      <h1>Statistics</h1>
+      <table border="solid-black">
+        <tbody>
+          <tr>
+            <td>Good</td><td>{g}</td>
+          </tr>
+          <tr>
+            <td>Bad</td><td>{b}</td>
+          </tr>
+          <tr>
+            <td>Neutral</td><td>{n}</td>
+          </tr>
+          <tr>
+            <td>Total</td><td>{all}</td>
+          </tr>
+          <tr>
+            <td>Average</td><td>{average}</td>
+          </tr>
+          <tr>
+            <td>Positive</td><td>{positive} %</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>{gnb}</p>
     </div>
+    )
+}
+
+const Button = (props) => {
+  const today = new Date()
+  const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+  console.log(time + ' - props value is ', props)
+
+  const {handleClick, text} = props
+
+  return (  <button onClick={handleClick}>
+    {text}
+  </button>
   )
 }
 
@@ -43,14 +89,14 @@ const App = () => {
   return (
     <div>
       <div>
-        <h2>Tehtävät 1.6. - 1.14.</h2>
+        <h2>Tehtävät 1.6. - 1.11.</h2>
         <h1>Give feedback</h1>
 
-        <button onClick={goodClick}>Good</button>
+        <Button handleClick={goodClick} text ='Good' />
 
-        <button onClick={neutralClick}>Neutral</button>
+        <Button handleClick={neutralClick} text = 'Neutral' />
 
-        <button onClick={badClick}>Bad</button>
+        <Button handleClick={badClick} text = 'Bad' />
         
         <History allClicks={allClicks} />
 
@@ -60,8 +106,3 @@ const App = () => {
 }
 
 export default App
-
-//1.8 refaktoroi tilastojen näyttäminen omaan komponenttiin Statistics
-//1.9 jos palautteita ei ole, ei näytetä tilastoja
-//1.10 eriytä Button ja StatisticLine omiksi komponenteikseen
-//1.11 näytä tilastit html-taulukkona
