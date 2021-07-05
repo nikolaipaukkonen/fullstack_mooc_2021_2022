@@ -12,6 +12,15 @@ const History = (props) => {
   }
 }
 
+const StatisticsLine = ({text, value}) => {
+  return (
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
+  );
+}
+
 const Statistics = (props) => {
   const gnb = props.allClicks.join(' ') //join votes into a string
   const g = gnb.split("g").length -1 // count votes from the string
@@ -27,24 +36,12 @@ const Statistics = (props) => {
       <h1>Statistics</h1>
       <table border="solid-black">
         <tbody>
-          <tr>
-            <td>Good</td><td>{g}</td>
-          </tr>
-          <tr>
-            <td>Bad</td><td>{b}</td>
-          </tr>
-          <tr>
-            <td>Neutral</td><td>{n}</td>
-          </tr>
-          <tr>
-            <td>Total</td><td>{all}</td>
-          </tr>
-          <tr>
-            <td>Average</td><td>{average}</td>
-          </tr>
-          <tr>
-            <td>Positive</td><td>{positive} %</td>
-          </tr>
+          <StatisticsLine text="Good" value={g} />
+          <StatisticsLine text="Neutral" value={n} />
+          <StatisticsLine text="Bad" value={b} />
+          <StatisticsLine text="Total" value={all} />
+          <StatisticsLine text="Average" value={average} />
+          <StatisticsLine text="Positive" value={positive} />
         </tbody>
       </table>
 
