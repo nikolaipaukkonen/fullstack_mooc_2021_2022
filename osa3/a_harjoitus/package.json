@@ -1,0 +1,12 @@
+{
+  "name": "a_harjoitus",
+  "version": "1.0.0",
+  "description": "kolmososan ensimmäinen harjoitus",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "np",
+  "license": "ISC"
+}
