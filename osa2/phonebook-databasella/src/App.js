@@ -1,16 +1,27 @@
-import React, { useState } from 'react'
+// korjattu hakemaan data json-serveriltä
+
+import React, { useState, useEffect } from 'react'
 import Person from './components/Person'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
+import axios from 'axios'
+
 
 const App = () => {
-  const [ persons, setPersons] = useState([
-    { name:'asd', number:'123' },
-    { name:'asdf', number:'1234' }
-  ])
+  const [ persons, setPersons] = useState([])
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter] = useState('')
+
+  useEffect(() => {
+    console.log('effect')
+    axios.get('http://localhost:3001/persons').then(response => {
+      console.log('promise fulfilled')
+      setPersons(response.data)
+    })
+  }, [])
+  console.log('render', persons.length, 'persons')
+
 
   const addPerson = (event) => {
     event.preventDefault()
